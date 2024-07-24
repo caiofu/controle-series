@@ -1,28 +1,38 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Controle  de Séries</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body>
-<div class="container">
-    <div class="jumbotron">
-        <h1>Adicionar Série</h1>
-    </div>
+@extends('layout')
 
+@section('cabecalho')
+    Adicionar Série
+@endsection
+
+@section('conteudo')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <form method="post">
-        <div class="form-group mb-2">
-            <label for="nome" >Nome:</label>
-            <input type="text" class="form-control" name="nome">
+        @csrf
+        <div class="row">
+            <div class="col col-8">
+                <label for="nome" >Nome:</label>
+                <input type="text" class="form-control" name="nome" id="nome">
+            </div>
+            <div class="col col-2">
+                <label for="nome" >Número de temporadas:</label>
+                <input type="number" class="form-control" name="qtd_temporadas" id="qtd_temporadas">
+            </div>
+
+            <div class="col col-2">
+                <label for="nome" >Ep. por temporada:</label>
+                <input type="number" class="form-control" name="ep_por_temporada" id="ep_por_temporada">
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Adicionar</button>
-    </form>
-</div>
 
-</body>
-</html>
+        <button type="submit" class="btn btn-primary mt-3">Adicionar</button>
+    </form>
+@endsection

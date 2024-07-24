@@ -15,5 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/series', 'SeriesController@ListarSeries');
-Route::get('/series/criar', 'SeriesController@create');
+Route::get('/series', 'SeriesController@ListarSeries')->name('listar_series');
+Route::get('/series/criar', 'SeriesController@create')->name('form_criar_serie');
+Route::post('/series/criar', 'SeriesController@store');
+Route::delete('/series/{id}', 'SeriesController@destroy'); //Delete nesse caso é opcional
+
+Route::get('/series/{serieId}/temporadas', 'TemporadasController@index');
