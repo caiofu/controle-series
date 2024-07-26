@@ -38,4 +38,13 @@ class SeriesController extends Controller
         $request->session()->flash('mensagem', "Serie $nomeSerie removida com sucesso ");
         return redirect()->route('listar_series');
     }
+
+    public function editaNome(int $id,Request $request)//dessa forma voce ganha uma segurança a mais definindo o tipo de dados que ter que vir na chamada
+    {
+
+        $novoNome = $request->nome;
+        $serie = Serie::find($id);//Procura a serie
+        $serie->nome = $novoNome; //Diz que o novo nome é o passado pela requisição
+        $serie->save(); //O proprio nome ja diz salva a serie
+    }
 }
