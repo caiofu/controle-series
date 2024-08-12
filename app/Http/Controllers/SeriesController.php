@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 
 class SeriesController extends Controller
 {
+    /*
+    public function __construct()
+    {
+        //Para não acessar se não estiver logado.
+         $this->middleware('auth');
+    }
+*/
     public function ListarSeries(Request $request){
         $series = Serie::query()->orderBy('nome')->get();
         $mensagem = $request->session()->get('mensagem');
@@ -43,8 +50,8 @@ class SeriesController extends Controller
     {
 
         $novoNome = $request->nome;
-        $serie = Serie::find($id);//Procura a serie
-        $serie->nome = $novoNome; //Diz que o novo nome é o passado pela requisição
-        $serie->save(); //O proprio nome ja diz salva a serie
+        $serie = Serie::find($id);
+        $serie->nome = $novoNome;
+        $serie->save();
     }
 }

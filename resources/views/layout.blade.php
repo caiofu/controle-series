@@ -10,6 +10,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-between">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{route('listar_series')}}">Home</a>
+        @auth()
+            <a class="text-danger" href="/sair">Sair</a>
+        @endauth
+        @guest()
+            <a href="/entrar">Entrar</a>
+        @endguest
+    </div>
+</nav>
 <div class="container">
     <div class="jumbotron">
         <h1>@yield('cabecalho')</h1>
